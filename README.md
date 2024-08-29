@@ -77,6 +77,57 @@ Follow these steps to set up and run the project:
 
 The application should now be running. Access the Laravel API at `http://localhost:8000` and the Vue.js frontend at `http://localhost:3000` (or whichever port is specified by your Vue.js setup).
 
+## Unit Testing
+
+To set up and run unit tests, follow these steps:
+
+1. Create a `.env.testing` file with the database name set to "testing". For example:
+   ```
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=testing  # Ensure the database name matches the one you are using
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+
+2. Run the migrations for the testing environment:
+   ```
+   php artisan migrate --env=testing
+   ```
+
+3. To run the tests, use the following command:
+   ```
+   php artisan test
+   ```
+
+## API Documentation (L5 Swagger)
+
+To set up and view the API documentation using L5 Swagger, follow these steps:
+
+1. Install Swagger by running the following command (if not already present in composer.json):
+   ```
+   composer require darkaonline/l5-swagger
+   ```
+
+2. Publish the Swagger configuration file:
+   ```
+   php artisan vendor:publish --provider "L5Swagger\L5SwaggerServiceProvider"
+   ```
+
+3. Generate the Swagger documentation:
+   ```
+   php artisan l5-swagger:generate
+   ```
+
+4. You can now view the API documentation by visiting:
+   ```
+   http://your-domain-name/api/documentation
+   ```
+   For example: `http://127.0.0.1:8000/api/documentation`
+
+**Important Notice:** We are making some improvements to the APIs, such as changing POST methods to GET for APIs that only fetch records. These updates will be implemented soon.
+
 ## Additional Information
 
 - The Laravel API is located in the `api` directory (adjust if different in your project structure).
